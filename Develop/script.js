@@ -1,6 +1,8 @@
 $(document).ready(function () {
   var dayMonth = moment().format("dddd, MMMM, Do");
   $("#currentDay").text(dayMonth);
+  // call function to populate fields if theres anything in local storage
+  repopulateFields();
 });
 
 for (var i = 9; i <= 17; i++) {
@@ -40,17 +42,32 @@ saveButtonElements.on("click", (event) => {
   savetoLocalStorage(localStorageKey, localStorageText);
 });
 
-//Save to local storage 
+//Save to local storage
 const savetoLocalStorage = (key, value) => {
-  if (localStorage.getItem('savedTasks')) {
+  if (localStorage.getItem("savedTasks")) {
     //get array from local storage, parse it and store it in a variable.
-    let tasks = JSON.parse(localStorage.getItem('savedTasks'))
-    tasks[key]=value
-    localStorage.setItem('savedTasks', JSON.stringify(tasks));
+    let tasks = JSON.parse(localStorage.getItem("savedTasks"));
+    tasks[key] = value;
+    localStorage.setItem("savedTasks", JSON.stringify(tasks));
     //if there are no saved tasks yet, create tasks array and saved storage
   } else {
-    let tasks = {[key]:value};
+    let tasks = { [key]: value };
     localStorage.setItem("savedTasks", JSON.stringify(tasks));
   }
 };
-//helper func
+//helper function to keep stored items on page even if refreshed.
+//browser repopulates the fields
+const repopulateFields = () => {
+  //if nothing in local storage do nothing
+  if (!localStorage.getItem("savedTasks")) {
+    return;
+    // otherwise (if there is something) use the saved tasks to repopulate the fields
+  } else {
+    let tasks = JSON.parse(localStorage.getItem("savedTasks"));
+    //
+    for (let key in tasks) {
+      //target id of input field using key to set its value
+      $(`#${key}`).val(tasks[key]);
+    }
+  }
+};
