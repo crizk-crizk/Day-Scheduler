@@ -20,23 +20,24 @@ for (var i = 9; i <= 17; i++) {
   }
 }
 
-//****** Event listener for buttons ****** 
+//****** Event listener for buttons ******
 var saveButtonElements = $(".saveBtn");
 var textInputElements = $("textarea");
 
-for(var j = 0; j < saveButtonElements.length; j++) {
+for (var j = 0; j < saveButtonElements.length; j++) {
   //onclick for butttons
-  $(saveButtonElements[j].on('click', (event) => {
-  //separate buttons' listening power
-  var targetButton = $('event.target');
-  //get id of targetButton
-  var targetId = targetAttr('id');
-  //split targetId so only the number can be used
-  var targetNumber = targetId.substring(4);
-  //display text of tarted textarea using targetNumber
-  console.log($("#text-"+targetNumber).val());
+  $(saveButtonElements[j]).on("click", (event) => {
+    //separate buttons' listening power
+    var targetButton = $(event.target);
+    //get id of targetButton
+    var targetId = targetButton.attr("id");
+    //split targetId so only the number can be used
+    var targetNumber = targetId.substring(4);
+    //display text of tarted textarea using targetNumber
+    console.log($("#text-" + targetNumber).val());
   });
 };
+
 
 // var textInputElements = $(`#saveBtn-${saveButtonElements}`).val();
 
