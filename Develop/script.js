@@ -23,17 +23,19 @@ for (var i = 9; i <= 17; i++) {
 var saveButtonElements = $(".saveBtn");
 var textInputElements = $("textarea");
 
-// add a click function for each of the save buttons
-// we want to target the corresponding textarea
+// var textInputElements = $(`#saveBtn-${saveButtonElements}`).val();
 
-// first save button
-$(saveButtonElements[0]).on("click", function () {
-  // textarea that has id "text-9"
-  console.log($("#text-9").val());
-});
+// // add a click function for each of the save buttons
+// // want to target the corresponding textarea
 
-// second save button
-$(saveButtonElements[1]).on("click", function () {
-  // textarea that has id "text-10"
-  console.log($("#text-10").val());
-});
+// // first save button
+// $(saveButtonElements[0]).on("click", function () {
+//   // textarea that has id "text-9"
+//   console.log($("#text-9").val());
+// });
+
+// // second save button
+// $(saveButtonElements[1]).on("click", function () {
+//   // textarea that has id "text-10"
+//   console.log($("#text-10").val());
+// });
